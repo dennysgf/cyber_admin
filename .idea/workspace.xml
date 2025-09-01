@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ff6030e-31af-450d-86b1-35b47c6acb2b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/cyber_admin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cyber_admin.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dialogs/create_promo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dialogs/history.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_window.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dialogs/create_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/dialogs/create_user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dialogs/recharge.py" beforeDir="false" afterPath="$PROJECT_DIR$/dialogs/recharge.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,13 +44,15 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Python.admin_window.executor": "Run",
+    "Python.create_promo.executor": "Run",
     "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/User/Desktop/cyber_planet/cyber_admin"
+    "last_opened_file_path": "C:/Users/usuario/Desktop/cyber_control/cyber_admin",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="SharedIndexes">

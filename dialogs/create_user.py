@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit, QPushButton, QMessageBox
+from utils.models import create_user
 
 
 class CreateUserDialog(QDialog):
@@ -77,5 +78,10 @@ class CreateUserDialog(QDialog):
             QMessageBox.warning(self, "Error", "Debe completar todos los campos")
             return
 
-        QMessageBox.information(self, "Éxito", f"Usuario '{username}' creado correctamente")
-        self.accept()
+        success = create_user(username, password)
+
+        if success:
+            QMessageBox.information(self, "Éxito", f"Usuario '{username}' creado correctamente")
+            self.accept()
+        else:
+            QMessageBox.critical(self, "Error", "No se pudo crear el usuario")
