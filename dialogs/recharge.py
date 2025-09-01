@@ -120,13 +120,14 @@ class RechargeDialog(QDialog):
         if not promo or not promo.get("id"):
             return
 
-        add_time_to_user(self.selected_user["id"], promo["hours"])
+        # convertir horas a segundos antes de guardar
+        add_time_to_user(self.selected_user["id"], promo["hours"] * 3600)
         insert_recarga(self.selected_user["id"], promo["id"], promo["price"])
         update_caja(promo["price"])
 
         for u in self.all_users:
             if u["id"] == self.selected_user["id"]:
-                u["tiempo"] = (u.get("tiempo", 0) or 0) + promo["hours"]
+                u["tiempo"] = (u.get("tiempo", 0) or 0) + (promo["hours"] * 3600)
                 self.selected_user = u
                 break
 
