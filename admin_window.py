@@ -1,12 +1,15 @@
 from PyQt5.QtWidgets import (
     QMainWindow, QWidget, QGridLayout, QHBoxLayout,
-    QVBoxLayout, QPushButton, QAction, QLabel, QSizePolicy
+    QVBoxLayout, QPushButton, QAction, QLabel, QSizePolicy, QMenu
 )
+from PyQt5.QtCore import Qt
 from dialogs.create_user import CreateUserDialog
 from dialogs.recharge import RechargeDialog
 from dialogs.create_promo import CreatePromoDialog
-from utils.models import init_caja, get_caja
+from utils.models import init_caja, get_caja, logout_user
 from dialogs.history import HistoryDialog
+from dialogs.logout import LogoutDialog
+import os
 
 
 class AdminWindow(QMainWindow):
@@ -32,7 +35,8 @@ class AdminWindow(QMainWindow):
             }
         """)
         self.promotions = []
-        self.pc_status = {}  # estado de cada PC
+        self.pc_status = {}
+        self.pc_users = {}
 
         menubar = self.menuBar()
         menu_caja = menubar.addMenu("Caja")
@@ -55,6 +59,10 @@ class AdminWindow(QMainWindow):
         action_historial.triggered.connect(self.open_history)
         menu_caja.addAction(action_historial)
 
+        action_logout = QAction("Cerrar Sesión", self)
+        action_logout.triggered.connect(self.open_logout)
+        menu_usuarios.addAction(action_logout)
+
         main_widget = QWidget()
         self.setCentralWidget(main_widget)
         main_layout = QHBoxLayout(main_widget)
@@ -67,6 +75,8 @@ class AdminWindow(QMainWindow):
             btn.setMinimumSize(100, 80)
             btn.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
             btn.clicked.connect(lambda _, idx=i: self.toggle_pc(idx))
+            btn.setContextMenuPolicy(Qt.CustomContextMenu)
+            btn.customContextMenuRequested.connect(lambda pos, idx=i: self.pc_context_menu(idx, pos))
             self.pc_buttons.append(btn)
             self.pc_status[i] = "libre"
             self.update_pc_style(i)
@@ -130,9 +140,28 @@ class AdminWindow(QMainWindow):
     def toggle_pc(self, idx):
         if self.pc_status[idx] == "libre":
             self.pc_status[idx] = "ocupado"
+            self.pc_users[idx] = None
         else:
             self.pc_status[idx] = "libre"
+            self.pc_users.pop(idx, None)
         self.update_pc_style(idx)
+
+    def pc_context_menu(self, idx, pos):
+        if self.pc_status[idx] == "ocupado":
+            menu = QMenu()
+            action_logout = menu.addAction("Cerrar Sesión")
+            action_shutdown = menu.addAction("Apagar Computadora")
+            action = menu.exec_(self.pc_buttons[idx].mapToGlobal(pos))
+            if action == action_logout:
+                user_id = self.pc_users.get(idx)
+                if user_id:
+                    logout_user(user_id)
+                self.pc_status[idx] = "libre"
+                self.update_pc_style(idx)
+                self.pc_users.pop(idx, None)
+            elif action == action_shutdown:
+                pc_name = f"PC{idx+1}"
+                os.system(f"shutdown /s /m \\\\{pc_name} /t 0 /f")
 
     def refresh_caja(self):
         saldo = get_caja()
@@ -153,6 +182,11 @@ class AdminWindow(QMainWindow):
             promo = dialog.promotion
             if promo:
                 self.promotions.append(promo)
+
     def open_history(self):
         dialog = HistoryDialog(self)
+        dialog.exec_()
+
+    def open_logout(self):
+        dialog = LogoutDialog(self)
         dialog.exec_()

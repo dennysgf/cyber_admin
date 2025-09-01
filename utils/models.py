@@ -172,3 +172,21 @@ def get_recargas():
     except Exception as e:
         print(f"Error al obtener recargas: {e}")
         return []
+
+def logout_user(user_id):
+    conn = get_connection()
+    if not conn:
+        return False
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            "UPDATE usuarios SET tiempo_restante = 0 WHERE id = %s",
+            (user_id,)
+        )
+        conn.commit()
+        cur.close()
+        conn.close()
+        return True
+    except Exception as e:
+        print(f"Error al cerrar sesión del usuario: {e}")
+        return False
