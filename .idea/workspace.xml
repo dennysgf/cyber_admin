@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ff6030e-31af-450d-86b1-35b47c6acb2b" name="Changes" comment="models">
+    <list default="true" id="0ff6030e-31af-450d-86b1-35b47c6acb2b" name="Changes" comment="ajustes">
+      <change afterPath="$PROJECT_DIR$/assets/icons8-administrador-de-redes-64.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/icons8-administrador-de-redes-64.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_window.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dialogs/history.py" beforeDir="false" afterPath="$PROJECT_DIR$/dialogs/history.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dialogs/recharge.py" beforeDir="false" afterPath="$PROJECT_DIR$/dialogs/recharge.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,10 +63,15 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/usuario/Desktop/cyber_control/cyber_admin&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/usuario/Desktop/cyber_control/cyber_admin/assets&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\usuario\Desktop\cyber_control\cyber_admin\assets" />
+    </key>
+  </component>
   <component name="RunManager" selected="Python.main">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="cyber_admin" />
@@ -145,12 +155,30 @@
       <option name="project" value="LOCAL" />
       <updated>1756750318166</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="ajustes">
+      <option name="closed" value="true" />
+      <created>1756771193161</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1756771193161</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="4c89d060-7925-4b0f-ade9-ab6bfc4002bb" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
+        <entry key="4c89d060-7925-4b0f-ade9-ab6bfc4002bb">
+          <value>
+            <State />
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State />
@@ -162,6 +190,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="step 3 models" />
     <MESSAGE value="models" />
-    <option name="LAST_COMMIT_MESSAGE" value="models" />
+    <MESSAGE value="ajustes" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajustes" />
   </component>
 </project>

@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import (
 )
 from utils.models import (
     get_users, get_promotions, add_time_to_user,
-    insert_recarga, update_caja
+    insert_recarga, add_to_caja
 )
 
 
@@ -50,8 +50,8 @@ class RechargeDialog(QDialog):
         self.table.setColumnCount(2)
         self.table.setHorizontalHeaderLabels(["Usuario", "Tiempo restante"])
         self.table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-        self.table.verticalHeader().setVisible(False)   # 👈 elimina la columna blanca izquierda
-        self.table.setShowGrid(False)                   # 👈 quita líneas extras
+        self.table.verticalHeader().setVisible(False)
+        self.table.setShowGrid(False)
         self.table.cellClicked.connect(self.select_user_from_table)
         layout.addWidget(self.table)
 
@@ -78,7 +78,6 @@ class RechargeDialog(QDialog):
         self.selected_user = None
         self.all_users = get_users() or []
 
-        # 👇 Al inicio tabla vacía
         self.table.setRowCount(0)
 
     def load_users(self, users):
@@ -89,17 +88,16 @@ class RechargeDialog(QDialog):
             row = self.table.rowCount()
             self.table.insertRow(row)
             self.table.setItem(row, 0, QTableWidgetItem(str(u["username"])))
-            tiempo_horas = u.get("tiempo", 0) or 0
-            total_seconds = int(tiempo_horas * 3600)
-            horas = total_seconds // 3600
-            minutos = (total_seconds % 3600) // 60
-            segundos = total_seconds % 60
+            tiempo_segundos = int(u.get("tiempo", 0) or 0)
+            horas = tiempo_segundos // 3600
+            minutos = (tiempo_segundos % 3600) // 60
+            segundos = tiempo_segundos % 60
             formatted_time = f"{horas:02d}:{minutos:02d}:{segundos:02d}"
             self.table.setItem(row, 1, QTableWidgetItem(formatted_time))
 
     def filter_users(self):
         text = self.search_input.text().lower()
-        if not text:  # 👈 si está vacío, limpiar tabla
+        if not text:
             self.table.setRowCount(0)
             return
         filtered = [u for u in self.all_users if text in u.get("username", "").lower()]
@@ -120,10 +118,9 @@ class RechargeDialog(QDialog):
         if not promo or not promo.get("id"):
             return
 
-        # convertir horas a segundos antes de guardar
         add_time_to_user(self.selected_user["id"], promo["hours"] * 3600)
         insert_recarga(self.selected_user["id"], promo["id"], promo["price"])
-        update_caja(promo["price"])
+        add_to_caja(promo["price"])  # 👈 se suma a la caja del día
 
         for u in self.all_users:
             if u["id"] == self.selected_user["id"]:
@@ -132,6 +129,4 @@ class RechargeDialog(QDialog):
                 break
 
         self.filter_users()
-
         self.recharge_amount = promo["price"]
-
