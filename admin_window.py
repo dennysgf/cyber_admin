@@ -190,9 +190,9 @@ class AdminWindow(QMainWindow):
                 user_id = self.pc_users.get(idx)
                 if user_id:
                     from PyQt5.QtWidgets import QInputDialog
-                    minutes, ok = QInputDialog.getInt(self, "Quitar Tiempo", "Minutos a restar:", 0, 0)
-                    if ok and minutes > 0:
-                        seconds = minutes * 60
+                    hours, ok = QInputDialog.getInt(self, "Quitar Tiempo", "Horas a restar:", 0, 0)
+                    if ok and hours > 0:
+                        seconds = hours * 60 * 60
                         remove_time(user_id, seconds)
 
             elif action == action_reset_pass:
